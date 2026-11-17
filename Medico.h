@@ -15,6 +15,7 @@ public:
 	
 	void setEspecialidad(string *especialidad);
 	string getEspecialidad();
+	
 	void setGuardiasNocturnas(int *guardiasNocturnas);
 	int getGuardiasNocturnas();
 	

@@ -66,5 +66,15 @@ Administrativo* Administrativo::autoLeer(ifstream& estFile) {
 	string *pPuesto = new string(puestoLeido);
 	double *pBonificacion = new double(bonificacionLeida);
 	
-	return new Administrativo(pId, pNombre, pSalario, pTurno, pHoras, pPuesto, pBonificacion);
+	Administrativo* adm = new Administrativo(pId, pNombre, pSalario, pTurno, pHoras, pPuesto, pBonificacion);
+	
+	delete pId;
+	delete pNombre;
+	delete pSalario;
+	delete pTurno;
+	delete pHoras;
+	delete pPuesto;
+	delete pBonificacion;
+	
+	return adm;
 }

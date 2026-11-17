@@ -26,6 +26,7 @@ public:
 	double calcularTotalBruto();
 	double calcularTotalDeducciones();
 	double calcularTotalNeto();
+	NodoComprobante* getCabeza();
 };
 
 #endif

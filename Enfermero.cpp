@@ -70,5 +70,15 @@ Enfermero* Enfermero::autoLeer(ifstream& estFile) {
 	string *pArea = new string(areaLeida);
 	int *pTurnos = new int(turnosLeidos);
 	
-	return new Enfermero(pId, pNombre, pSalario, pTurno, pHoras, pArea, pTurnos);
+	Enfermero* enf = new Enfermero(pId, pNombre, pSalario, pTurno, pHoras, pArea, pTurnos);
+	
+	delete pId;
+	delete pNombre;
+	delete pSalario;
+	delete pTurno;
+	delete pHoras;
+	delete pArea;
+	delete pTurnos;
+	
+	return enf;
 }

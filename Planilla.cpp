@@ -96,6 +96,11 @@ void Planilla::actualizarTotales() {
 
 void Planilla::cerrarPlanilla() {
 	*cerrada = true;
+	NodoComprobante* nodo = comprobantes->getCabeza();
+	while (nodo != NULL) {
+		nodo->getDato()->procesarPago();
+		nodo = nodo->getSig();
+	}
 }
 
 string Planilla::toString() {

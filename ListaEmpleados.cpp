@@ -53,6 +53,9 @@ string ListaEmpleados::eliminarEmpleado(string id) {
 	if (id == cabeza->getDato()->getId()) {
 		aux = cabeza;
 		cabeza = cabeza->getSig();
+		if (cabeza == NULL) {
+			cola = NULL;
+		}
 		delete aux;
 		return "Empleado eliminado";
 	} else {
@@ -60,6 +63,9 @@ string ListaEmpleados::eliminarEmpleado(string id) {
 			if (id == actual->getSig()->getDato()->getId()) {
 				aux = actual->getSig();
 				actual->setSig(aux->getSig());
+				if (aux == cola) {
+					cola = actual;
+				}
 				delete aux;
 				bandera = true;
 				return "Empleado eliminado";
@@ -136,7 +142,7 @@ string ListaEmpleados::listarEmpleados() {
 
 void ListaEmpleados::ordenarEmpleados() {
 	if (vacio() || cabeza->getSig() == NULL) {
-		return; // Si está vacía o tiene un solo nodo, ya está ordenada
+		return;
 	}
 	
 	bool intercambio;
@@ -145,9 +151,7 @@ void ListaEmpleados::ordenarEmpleados() {
 		actual = cabeza;
 		
 		while (actual->getSig() != NULL) {
-			// Comparamos el salario base de los dos nodos adyacentes
 			if (actual->getDato()->getSalarioBase() > actual->getSig()->getDato()->getSalarioBase()) {
-				// Intercambiamos los datos (punteros), no los nodos
 				Empleado *temp = actual->getDato();
 				actual->setDato(actual->getSig()->getDato());
 				actual->getSig()->setDato(temp);
@@ -164,6 +168,9 @@ string ListaEmpleados::insertarPosicion(int posicion, Empleado* dato) {
 	if (vacio() || posicion <= 1) {
 		nuevo->setSig(cabeza);
 		cabeza = nuevo;
+		if (cola == NULL) {
+			cola = nuevo;
+		}
 		return "Empleado insertado al inicio";
 	}
 	
@@ -177,6 +184,24 @@ string ListaEmpleados::insertarPosicion(int posicion, Empleado* dato) {
 	
 	nuevo->setSig(actual->getSig());
 	actual->setSig(nuevo);
+	if (nuevo->getSig() == NULL) {
+		cola = nuevo;
+	}
 	
 	return "Empleado insertado en la posicion";
+}
+
+Empleado* ListaEmpleados::buscarPorId(string id) {
+	actual = cabeza;
+	while (actual != NULL) {
+		if (actual->getDato()->getId() == id) {
+			return actual->getDato();
+		}
+		actual = actual->getSig();
+	}
+	return NULL;
+}
+
+NodoEmpleado* ListaEmpleados::getCabeza() {
+	return cabeza;
 }

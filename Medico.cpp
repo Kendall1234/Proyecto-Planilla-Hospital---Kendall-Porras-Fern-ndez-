@@ -43,13 +43,13 @@ string Medico::toString() {
 }
 
 void Medico::autoGuardar(ofstream& estFile) {
-	Empleado::autoGuardar(estFile); // Guarda los datos del padre
+	Empleado::autoGuardar(estFile); 
 	estFile << *especialidad << endl
-		<< *guardiasNocturnas << endl; // Guarda los datos extra
+		<< *guardiasNocturnas << endl; 
 }
 
 Medico* Medico::autoLeer(ifstream& estFile) {
-	// Primero leemos los datos del padre
+	
 	string idLeido, nombreLeido, turnoLeido, especialidadLeido;
 	double salarioBaseLeido, horasExtraLeido;
 	int guardiasLeido;
@@ -60,11 +60,9 @@ Medico* Medico::autoLeer(ifstream& estFile) {
 	if (!(estFile >> turnoLeido)) { return NULL; }
 	if (!(estFile >> horasExtraLeido)) { return NULL; }
 	
-	// Luego los datos extra del médico
 	if (!(estFile >> especialidadLeido)) { return NULL; }
 	if (!(estFile >> guardiasLeido)) { return NULL; }
 	
-	// Creamos los punteros y retornamos el nuevo Medico
 	string *pId = new string(idLeido);
 	string *pNombre = new string(nombreLeido);
 	double *pSalario = new double(salarioBaseLeido);
@@ -73,5 +71,15 @@ Medico* Medico::autoLeer(ifstream& estFile) {
 	string *pEspecialidad = new string(especialidadLeido);
 	int *pGuardias = new int(guardiasLeido);
 	
-	return new Medico(pId, pNombre, pSalario, pTurno, pHoras, pEspecialidad, pGuardias);
+	Medico* med = new Medico(pId, pNombre, pSalario, pTurno, pHoras, pEspecialidad, pGuardias);
+	
+	delete pId;
+	delete pNombre;
+	delete pSalario;
+	delete pTurno;
+	delete pHoras;
+	delete pEspecialidad;
+	delete pGuardias;
+	
+	return med;
 }

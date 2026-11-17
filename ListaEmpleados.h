@@ -22,6 +22,8 @@ public:
 	string listarEmpleados();
 	void ordenarEmpleados();
 	string insertarPosicion(int posicion, Empleado* dato);
+	Empleado* buscarPorId(string id);
+	NodoEmpleado* getCabeza();
 };
 
 #endif

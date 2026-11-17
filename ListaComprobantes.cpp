@@ -12,7 +12,7 @@ ListaComprobantes::~ListaComprobantes() {
 	while (actual != NULL) {
 		aux = actual;
 		actual = actual->getSig();
-		delete aux->getDato(); // Composicion: destruye el comprobante
+		delete aux->getDato();
 		delete aux;
 	}
 }
@@ -223,4 +223,8 @@ double ListaComprobantes::calcularTotalNeto() {
 		actual = actual->getSig();
 	}
 	return total;
+}
+
+NodoComprobante* ListaComprobantes::getCabeza() {
+	return cabeza;
 }
