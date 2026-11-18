@@ -1,3 +1,4 @@
+<img width="2978" height="2599" alt="UML Proyecto programación Kendall  drawio" src="https://github.com/user-attachments/assets/f4ccce02-3df6-4b2f-b653-23e09db134f6" />
 # Proyecto-Planilla-Hospital---Kendall-Porras-Fern-ndez-
 
 # Sistema de Gestión de Planilla Hospitalaria
